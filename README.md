@@ -1,3 +1,4 @@
+===
 # Kitti-ROS-project
 ===
 ![Build Status](https://github.com/subsurface/subsurface/workflows/Ubuntu%2020.04%20/%20Qt%205.12--/badge.svg)  ![[build](https://img.shields.io/appveyor/ci/:user/:repo.svg)](https://img.shields.io/ros/v/noetic/moveit_msgs.svg)
@@ -8,18 +9,30 @@ Welcome to the Self-Driving Car Project, a comprehensive implementation based on
 ![https://hackmd.io/_uploads/HksawMgQT.gif](https://user-images.githubusercontent.com/124876411/279774938-49fca8df-8021-42da-8924-bb2e1b1ca753.gif)
 
 ## Contents
----
 
-[TOC]
 
----
+[Kitti-ROS-project](https://github.com/EvanYu0000/Kitti-ROS-project#kitti-ros-project)
+- [Contents](https://github.com/EvanYu0000/Kitti-ROS-project#contents)
+- [Dependencies](https://github.com/EvanYu0000/Kitti-ROS-project#dependencies)
+- [Dataset Quick Overview (KITTI)](https://github.com/EvanYu0000/Kitti-ROS-project#dataset-quick-overview-kitti)
+- [Tests on Jupyter](https://github.com/EvanYu0000/Kitti-ROS-project#tests-on-jupyter)
+-- [car_distance.ipynb](https://github.com/EvanYu0000/Kitti-ROS-project#car_distanceipynb)
+-- [car_tracking.ipynb](https://github.com/EvanYu0000/Kitti-ROS-project#car_trackingipynb)
+-- [kitti_plot2D.ipynb](https://github.com/EvanYu0000/Kitti-ROS-project#kitti_plot2dipynb)
+-- [kitti_plot3D.ipynb](https://github.com/EvanYu0000/Kitti-ROS-project#kitti_plot3dipynb)
+- [Source code](https://github.com/EvanYu0000/Kitti-ROS-project#source-code)
+- [Demo](https://github.com/EvanYu0000/Kitti-ROS-project#demo)
+- [Resources](https://github.com/EvanYu0000/Kitti-ROS-project#resources)
+- [License](https://github.com/EvanYu0000/Kitti-ROS-project#license)
+
+
 
 
 
 
 
 ## Dependencies
----
+
 
 ```gherkin=
 os
@@ -31,7 +44,7 @@ rospy
 
 
 ## Dataset Quick Overview (KITTI)
----
+
 The dataset is structured to provide a comprehensive understanding of the KITTI data, which is an essential resource for various computer vision and autonomous driving applications. The dataset comprises several key components, each serving a unique purpose:
 ```
 .
@@ -62,7 +75,7 @@ The dataset is structured to provide a comprehensive understanding of the KITTI 
 
 
 ## Tests on Jupyter
----
+
 ```
 │── a_jupyter
     ├── car_distance.ipynb
@@ -122,7 +135,7 @@ At this point, we have successfully ascertained the precise distance between the
 
 ![https://hackmd.io/_uploads/BJ8TBlxmT.png](https://user-images.githubusercontent.com/124876411/279774868-0be8f305-5442-4af9-8ead-bf34647d4665.png)
 
----
+
 ### car_tracking.ipynb
 Precisely determining a location using GPS (Global Positioning System) data and IMU (Inertial Measurement Unit) data is a fundamental aspect of navigation, especially in applications like autonomous vehicles. GPS provides global positioning coordinates, but it can have limitations, such as accuracy and signal loss in urban canyons or tunnels. IMU data, on the other hand, can help mitigate these issues by providing continuous and reliable orientation and motion information.
 
@@ -140,7 +153,7 @@ The plot displays the distances calculated from both GPS and IMU data, which the
 After merging both data, we can generate the following plot, which provides precise and continuous results.
 ![https://hackmd.io/_uploads/HkTlL0Jma.png](https://user-images.githubusercontent.com/124876411/279774714-86832d7d-4941-4285-a26c-db21fc555c90.png)
 
----
+
 
 ### kitti_plot2D.ipynb
 The extraction of labels involves identifying objects of interest within an image, and subsequently, applying these labels to the corresponding objects. Once labeled, bounding boxes are drawn around these objects to visually highlight their presence and location within the image.
@@ -163,7 +176,7 @@ The extraction of labels involves identifying objects of interest within an imag
 ```
 ![https://hackmd.io/_uploads/ByvVtRkXT.png](https://user-images.githubusercontent.com/124876411/279774732-f8292f60-e011-4b9a-bd7d-b966b18dbb04.png)
 
----
+
 
 ### kitti_plot3D.ipynb
 Utilizing point cloud data to [create a detailed 3D representation](https://github.com/enginBozkurt/Visualizing-lidar-data/blob/master/Kitti-Dataset.ipynb) of the scenario, allows us to build 3D detection bounding boxes based on tracking labels. To ensure accurate alignment and [calibration](https://github.com/charlesq34/frustum-pointnets/blob/master/kitti/kitti_util.py), we perform the necessary coordinate frame transformation from the camera frame to the global Velodyne frame. 
@@ -238,4 +251,4 @@ These visual cues offer valuable insights into the project's real-time monitorin
 ## License
 Kitti-ROS-project work is © 2023 Evan YU. MIT License
 
-See LICENSE for the full texts of the licenses.
+See [LICENSE](https://github.com/EvanYu0000/Kitti-ROS-project/blob/main/LICENSE) for the full texts of the licenses.
