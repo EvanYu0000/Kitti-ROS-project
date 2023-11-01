@@ -216,7 +216,6 @@ Eventually, we integrate the 3D bounding box and the point cloud environment.
 ├── src
      ├── data_utils.py
      ├── kitti.py    (main)
-     ├── kitti_util.py
      ├── misc.py
      ├── publish_utils.py
 ```
