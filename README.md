@@ -1,26 +1,24 @@
----
-title: 'Project documentation template'
-disqus: hackmd
----
-
-Kitti-ROS-project
+# Kitti-ROS-project
 ===
 ![Build Status](https://github.com/subsurface/subsurface/workflows/Ubuntu%2020.04%20/%20Qt%205.12--/badge.svg)  ![[build](https://img.shields.io/appveyor/ci/:user/:repo.svg)](https://img.shields.io/ros/v/noetic/moveit_msgs.svg)
 
 ## Introduction
 Welcome to the Self-Driving Car Project, a comprehensive implementation based on the KITTI dataset within the ROS-Python framework.
 
-![gif1](https://hackmd.io/_uploads/HksawMgQT.gif)
+![https://hackmd.io/_uploads/HksawMgQT.gif](https://user-images.githubusercontent.com/124876411/279774938-49fca8df-8021-42da-8924-bb2e1b1ca753.gif)
 
 ## Contents
+---
 
 [TOC]
 
+---
 
 
 
 
-Dependencies
+
+## Dependencies
 ---
 
 ```gherkin=
@@ -32,7 +30,7 @@ rospy
 ```
 
 
-Dataset Quick Overview (KITTI)
+## Dataset Quick Overview (KITTI)
 ---
 The dataset is structured to provide a comprehensive understanding of the KITTI data, which is an essential resource for various computer vision and autonomous driving applications. The dataset comprises several key components, each serving a unique purpose:
 ```
@@ -63,7 +61,7 @@ The dataset is structured to provide a comprehensive understanding of the KITTI 
 * OXTS Data: The OXTS data, obtained from onboard sensors, is used for precise positioning and orientation estimation. It also aids in estimating the relative distances between objects in the environment, contributing to a deeper understanding of the spatial relationships between objects.
 
 
-Tests on Jupyter
+## Tests on Jupyter
 ---
 ```
 │── a_jupyter
@@ -75,7 +73,7 @@ Tests on Jupyter
 ---
 ### car_distance.ipynb
 To ensure safety and efficient navigation, it is crucial to detect and quantify the distance between our own vehicle and other objects in the vicinity. In our final test, our objective is to calculate the shortest distance from our vehicle to other detected bounding boxes. This distance measurement is pivotal in making informed decisions to maintain a safe and collision-free environment during autonomous operations.
-![plot7](https://hackmd.io/_uploads/ByE8a1g7T.png)
+![https://hackmd.io/_uploads/ByE8a1g7T.png](https://user-images.githubusercontent.com/124876411/279774777-a7a7a4ab-1d3b-426e-92a3-bb5d6783f161.png)
 
 In the beginning, our primary objective is to determine the distance between an arbitrary point("P") and a line segment defined by its two endpoints, referred to as (AB line). This function returns the shortest distance from the point to the line segment, along with the coordinates of the closest point on the segment. 
 ```python=
@@ -93,7 +91,7 @@ def distance_point_to_segment(P, A, B):
     return d_PB, B
 ```
 It's worth noting that the function employs a strategy to calculate the minimum distance based on the position of a point in relation to a line segment. If the point falls between the line segment's endpoints, it computes the shortest orthogonal distance. However, if the point lies outside the line segment, it determines the minimum distance by extending a line from the point to the closest endpoint of the segment.
-![plot8](https://hackmd.io/_uploads/H1_sfee7p.png)
+![https://hackmd.io/_uploads/H1_sfee7p.png](https://user-images.githubusercontent.com/124876411/279774843-eaa1d08f-5aa5-43d6-a47d-dc1d70c0d7fa.png)
 
 In the sequential step, to calculate the minimum distance between two cuboids defined by their vertices. It does so by computing the minimum distance between any pair of line segments from the two cuboids and returns the closest points along with the distance. 
 
@@ -104,7 +102,7 @@ def min_distance_cuboids(cub1,cub2):
     minD = 1e5
     for i in range(4):
         for j in range(4):
-            # 计算点P到线段AB的最短距离和最短距离点Q的坐标
+            # 計算點P到線段AB的最短距離和最短距離點Q的座標
             d, Q = distance_point_to_segment(cub1[i,:2], cub2[j,:2], cub2[j+1,:2])
             if d<minD:
                 minD = d
@@ -112,7 +110,7 @@ def min_distance_cuboids(cub1,cub2):
                 minQ = Q
     for i in range(4):
         for j in range(4):
-            # 计算点P到线段AB的最短距离和最短距离点Q的坐标
+            # 計算點P到線段AB的最短距離和最短距離點Q的座標
             d, Q = distance_point_to_segment(cub2[i,:2], cub1[j,:2], cub1[j+1,:2])
             if d<minD:
                 minD = d
@@ -122,7 +120,7 @@ def min_distance_cuboids(cub1,cub2):
 ```
 At this point, we have successfully ascertained the precise distance between the two objects. Remarkably, this approach allows us to obtain an exact distance even when the two objects are parallel.
 
-![plot9](https://hackmd.io/_uploads/BJ8TBlxmT.png)
+![https://hackmd.io/_uploads/BJ8TBlxmT.png](https://user-images.githubusercontent.com/124876411/279774868-0be8f305-5442-4af9-8ead-bf34647d4665.png)
 
 ---
 ### car_tracking.ipynb
@@ -137,10 +135,10 @@ def comupte_great_circle_distance(lat1, lon1, lat2, lon2):
     return 6371000.0 * np.arccos(np.clip(delta_sigma,-1,1))
 ```
 The plot displays the distances calculated from both GPS and IMU data, which the GPS data exhibits discontinuities, while the IMU data remains continuous.
-![plot1](https://hackmd.io/_uploads/Sk_HXCJ7a.png)
+![https://hackmd.io/_uploads/Sk_HXCJ7a.png](https://user-images.githubusercontent.com/124876411/279774678-3bfeedb0-5337-40f7-9988-80d583737c5d.png)
 
 After merging both data, we can generate the following plot, which provides precise and continuous results.
-![plot2](https://hackmd.io/_uploads/HkTlL0Jma.png)
+![https://hackmd.io/_uploads/HkTlL0Jma.png](https://user-images.githubusercontent.com/124876411/279774714-86832d7d-4941-4285-a26c-db21fc555c90.png)
 
 ---
 
@@ -163,13 +161,13 @@ The extraction of labels involves identifying objects of interest within an imag
 
 711 rows × 17 columns
 ```
-![img1](https://hackmd.io/_uploads/ByvVtRkXT.png)
+![https://hackmd.io/_uploads/ByvVtRkXT.png](https://user-images.githubusercontent.com/124876411/279774732-f8292f60-e011-4b9a-bd7d-b966b18dbb04.png)
 
 ---
 
 ### kitti_plot3D.ipynb
 Utilizing point cloud data to [create a detailed 3D representation](https://github.com/enginBozkurt/Visualizing-lidar-data/blob/master/Kitti-Dataset.ipynb) of the scenario, allows us to build 3D detection bounding boxes based on tracking labels. To ensure accurate alignment and [calibration](https://github.com/charlesq34/frustum-pointnets/blob/master/kitti/kitti_util.py), we perform the necessary coordinate frame transformation from the camera frame to the global Velodyne frame. 
-![plot3](https://hackmd.io/_uploads/r1e37yxXT.png)
+![plot1](https://user-images.githubusercontent.com/124876411/279775200-45de83db-e515-491d-9576-0744a522cb9b.png)
 Next step involves the computation of the 3D coordinates for the eight corners of the bounding box within the camera coordinate system. This process requires the input of the box's height (h), width (w), length (l), its position ( x, y, z), and its yaw direction (yaw). It leverages rotation and translation matrices to perform the necessary transformations. The output is a 3x8 array, providing precise spatial coordinates for each of the box's corner points within the camera coordinate system, as specified.
 ```python=
 # Calculate the 3D coordinates of the corners of a bounding box in the cam2 coordinate frame.
@@ -185,14 +183,14 @@ def compute_3d_box_cam2(h,w,l,x,y,z,yaw):
     corners_3d_cam2 += np.vstack([x,y,z])
     return corners_3d_cam2
 ```
-![plot4](https://hackmd.io/_uploads/S11rSkemT.png)
+![https://hackmd.io/_uploads/S11rSkemT.png](https://user-images.githubusercontent.com/124876411/279775193-0779f19b-5a85-4c42-a1f1-e3f6fe702e8f.png)
 However, it's important to note that the aforementioned plot is presented in relation to the camera frame. To align it with the Velodyne frame, we will perform calibration using the calibration file. This calibration process ensures that the spatial data is accurately transformed from the camera frame to the Velodyne frame, enabling a consistent and unified representation.
 [calibration algorithm](https://github.com/charlesq34/frustum-pointnets/blob/master/kitti/kitti_util.py)
-![plot5](https://hackmd.io/_uploads/H1yfHygQT.png)
+![https://hackmd.io/_uploads/H1yfHygQT.png](https://user-images.githubusercontent.com/124876411/279775188-af68e49d-5bf0-446b-a269-bc9486d8cbfe.png)
 
 Eventually, we integrate the 3D bounding box and the point cloud environment. 
 
-![plot6](https://hackmd.io/_uploads/ryloqygQa.png)
+![https://hackmd.io/_uploads/r1e37yxXT.png](https://user-images.githubusercontent.com/124876411/279775179-9ce73efc-bd6a-43b8-8232-e496906c69e6.png)
 
 
 
@@ -218,7 +216,7 @@ Eventually, we integrate the 3D bounding box and the point cloud environment.
 In this section, we present a visual demonstration of our project's results, including videos and images that illustrate the outcomes and capabilities of our project. These visual assets offer a firsthand look at the project in action and provide insights into its performance and functionality. 
 
 This image provides a visual representation of object detection results achieved through camera input. Each detected object is prominently highlighted with a bounding box, uniquely labeled in specific colors.
-![img2](https://hackmd.io/_uploads/rJfWSblmp.png)
+![https://hackmd.io/_uploads/rJfWSblmp.png](https://user-images.githubusercontent.com/124876411/279774999-ddcb80f0-4cb6-4fde-aa65-df20260a7f91.png)
 
 The following synchronized image showcases several visual elements:
 
@@ -228,16 +226,14 @@ The following synchronized image showcases several visual elements:
 * Purple Arrow: Always oriented from the vehicle's center to the ground, symbolizing IMU (Inertial Measurement Unit) data.
 
 These visual cues offer valuable insights into the project's real-time monitoring, object tracking, and safety measures, making it a comprehensive visual reference for understanding the project's capabilities.
-![img3](https://hackmd.io/_uploads/rkivHWg7a.png)
+![https://hackmd.io/_uploads/rkivHWg7a.png](https://user-images.githubusercontent.com/124876411/279775003-5c3bcb27-357b-4990-87b0-e06aef355f4d.png)
 
-:::info
 **Video Link :**  https://youtu.be/pHGKihEtw4M
-:::
 
 ## Resources
-[1] AI葵，自動駕駛教學。 [Youtube Link](https://https://youtu.be/TBdcwwr5Wyk?si=9j6L3XyesbA5WeWN)
-[2] Charles R. Qi, calibration algorithm. [Github Link](https://github.com/charlesq34/frustum-pointnets/blob/master/kitti/kitti_util.py)
-[3] Engin Bozkurt, visualizing algorithm.  [Github Link](https://github.com/enginBozkurt/Visualizing-lidar-data/blob/master/Kitti-Dataset.ipynb)
+1.	AI葵，自動駕駛教學。 [Youtube Link](https://https://youtu.be/TBdcwwr5Wyk?si=9j6L3XyesbA5WeWN)
+2.	Charles R. Qi, calibration algorithm. [Github Link](https://github.com/charlesq34/frustum-pointnets/blob/master/kitti/kitti_util.py)
+3.	Engin Bozkurt, visualizing algorithm.  [Github Link](https://github.com/enginBozkurt/Visualizing-lidar-data/blob/master/Kitti-Dataset.ipynb)
 
 ## License
 Kitti-ROS-project work is © 2023 Evan YU. MIT License
