@@ -7,7 +7,7 @@
 ## Introduction
 Welcome to the Self-Driving Car Project, a comprehensive implementation based on the KITTI dataset within the ROS-Python framework.
 
-![https://hackmd.io/_uploads/HksawMgQT.gif](https://user-images.githubusercontent.com/124876411/279774938-49fca8df-8021-42da-8924-bb2e1b1ca753.gif)
+![ezgif com-optimize (2)](https://github.com/EvanYu0000/Kitti-ROS-project/assets/124876411/cee609ff-5264-456c-84ca-f422534f562d)
 
 ---
 
