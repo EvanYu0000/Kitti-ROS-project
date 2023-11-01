@@ -3,7 +3,6 @@ import os
 from cv_bridge import CvBridge
 from data_utils import *
 from publish_utils import *
-from kitti_util import *
 from misc import *
 import rospy
 
