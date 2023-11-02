@@ -37,7 +37,7 @@ Welcome to the Self-Driving Car Project, a comprehensive implementation based on
 ## Dependencies
 
 
-```gherkin=
+```sh
 os
 cv2
 numpy
@@ -49,7 +49,7 @@ rospy
 ## Dataset Quick Overview (KITTI)
 
 The dataset is structured to provide a comprehensive understanding of the KITTI data, which is an essential resource for various computer vision and autonomous driving applications. The dataset comprises several key components, each serving a unique purpose:
-```
+```sh
 .
 │── a_data
     ├── RawData
@@ -80,7 +80,7 @@ The dataset is structured to provide a comprehensive understanding of the KITTI 
 
 ## Tests on Jupyter
 
-```
+```sh
 │── a_jupyter
     ├── car_distance.ipynb
     ├── car_tracking.ipynb
@@ -93,8 +93,10 @@ To ensure safety and efficient navigation, it is crucial to detect and quantify 
 ![https://hackmd.io/_uploads/ByE8a1g7T.png](https://user-images.githubusercontent.com/124876411/279774777-a7a7a4ab-1d3b-426e-92a3-bb5d6783f161.png)
 
 In the beginning, our primary objective is to determine the distance between an arbitrary point("P") and a line segment defined by its two endpoints, referred to as (AB line). This function returns the shortest distance from the point to the line segment, along with the coordinates of the closest point on the segment. 
-```python=
+
+```python
 #Calculate the shortest distance between a point (P) and a line segment defined by two endpoints (A and B).
+
 def distance_point_to_segment(P, A, B):
     AP = P - A
     BP = P - B
@@ -112,14 +114,14 @@ It's worth noting that the function employs a strategy to calculate the minimum 
 
 In the sequential step, to calculate the minimum distance between two cuboids defined by their vertices. It does so by computing the minimum distance between any pair of line segments from the two cuboids and returns the closest points along with the distance. 
 
-```python=
+```python
 #Calculate the minimum distance between two cuboids represented by their vertices.
 
 def min_distance_cuboids(cub1,cub2):
     minD = 1e5
     for i in range(4):
         for j in range(4):
-            # 計算點P到線段AB的最短距離和最短距離點Q的座標
+            # Calculate the shortest distance from point P to line segment AB and the coordinates of the shortest distance point Q
             d, Q = distance_point_to_segment(cub1[i,:2], cub2[j,:2], cub2[j+1,:2])
             if d<minD:
                 minD = d
@@ -127,7 +129,6 @@ def min_distance_cuboids(cub1,cub2):
                 minQ = Q
     for i in range(4):
         for j in range(4):
-            # 計算點P到線段AB的最短距離和最短距離點Q的座標
             d, Q = distance_point_to_segment(cub2[i,:2], cub1[j,:2], cub1[j+1,:2])
             if d<minD:
                 minD = d
@@ -143,7 +144,7 @@ At this point, we have successfully ascertained the precise distance between the
 ### car_tracking.ipynb
 Precisely determining a location using GPS (Global Positioning System) data and IMU (Inertial Measurement Unit) data is a fundamental aspect of navigation, especially in applications like autonomous vehicles. GPS provides global positioning coordinates, but it can have limitations, such as accuracy and signal loss in urban canyons or tunnels. IMU data, on the other hand, can help mitigate these issues by providing continuous and reliable orientation and motion information.
 
-```python=
+```python
 #Calculate the great-circle distance between two points on the Earth's surface using their latitude and longitude coordinates.  
 
 def comupte_great_circle_distance(lat1, lon1, lat2, lon2):
@@ -162,7 +163,7 @@ After merging both data, we can generate the following plot, which provides prec
 ### kitti_plot2D.ipynb
 The extraction of labels involves identifying objects of interest within an image, and subsequently, applying these labels to the corresponding objects. Once labeled, bounding boxes are drawn around these objects to visually highlight their presence and location within the image.
 
-```
+```sh
 	frame	track_id	type		truncated	occluded	alpha		bbox_left	bbox_top	bbox_right	bbox_bottom	height	width	length		pos_x		pos_y		pos_z		rot_y
 2	0	0		Car		0	0	-1.793451	296.744956	161.752147	455.226042	292.372804	2.000000	1.823255	4.433886	-4.552284	1.858523	13.410495	-2.115488
 3	0	1		Cyclist		0	0	-1.936993	737.619499	161.531951	931.112229	374.000000	1.739063	0.824591	1.785241	1.640400	1.675660	5.776261	-1.675458
@@ -186,8 +187,9 @@ The extraction of labels involves identifying objects of interest within an imag
 Utilizing point cloud data to [create a detailed 3D representation](https://github.com/enginBozkurt/Visualizing-lidar-data/blob/master/Kitti-Dataset.ipynb) of the scenario, allows us to build 3D detection bounding boxes based on tracking labels. To ensure accurate alignment and [calibration](https://github.com/charlesq34/frustum-pointnets/blob/master/kitti/kitti_util.py), we perform the necessary coordinate frame transformation from the camera frame to the global Velodyne frame. 
 ![plot1](https://user-images.githubusercontent.com/124876411/279775200-45de83db-e515-491d-9576-0744a522cb9b.png)
 Next step involves the computation of the 3D coordinates for the eight corners of the bounding box within the camera coordinate system. This process requires the input of the box's height (h), width (w), length (l), its position ( x, y, z), and its yaw direction (yaw). It leverages rotation and translation matrices to perform the necessary transformations. The output is a 3x8 array, providing precise spatial coordinates for each of the box's corner points within the camera coordinate system, as specified.
-```python=
+```python
 # Calculate the 3D coordinates of the corners of a bounding box in the cam2 coordinate frame.
+
 def compute_3d_box_cam2(h,w,l,x,y,z,yaw):
     """
     Return :3xn in cam2 coordinate
@@ -213,7 +215,7 @@ Eventually, we integrate the 3D bounding box and the point cloud environment.
 
 
 ## Source code
-```
+```sh
 ├── src
      ├── data_utils.py
      ├── kitti.py    (main)
